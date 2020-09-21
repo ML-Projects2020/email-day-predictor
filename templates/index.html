@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Covid cases Predictor</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://kit.fontawesome.com/5f3f547070.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+</head>
+
+<body>
+
+    <!-- Website Title -->
+    <div class="container-bg container">
+        <h2 class='container-heading'><span class="heading_font">Prediction: Day of the email opened</span></h2>
+        <div class='description'>
+            <p>A Machine Learning Web App, Built with Flask, Deployed using Heroku.</p>
+        </div>
+    </div>
+
+    <!-- Text Area -->
+    <div class="container padding-zero ">
+        <div class="row">
+            <form class="form-horizontal col-md-4" action="{{ url_for('predict') }}" method="POST">
+                <div class="form-group">
+                    <label class="control-label" for="email">Enter Contact ID</label>
+                    <div >
+                        <input autocomplete="off"  class="form-control" type="text" placeholder="Ex: 72581" name="contactId">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="email">Enter Campaign ID</label>
+                    <div >
+                        <input autocomplete="off"  class="form-control" type="text" placeholder="Ex: 8351" name="campaignId">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="email">Select the Campaign Date:</label>
+                    <div >
+                        <input autocomplete="off" min="2020-03-01" max="2020-12-31" class="form-control" type="datetime-local" name="campaignDate"
+                            placeholder="Enter date in yyyy-mm-dd, ex: 2020-06-12"><br>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="email">Select the Country:</label>
+                   <select multiple="multiple" name="country">
+                        {% for item in countries %}
+                        <option value="{{ item }}">{{ item }}</option>
+                        {% endfor %}
+                        </select>
+                <div >
+                <div class="col text-center">
+                   <input type="submit" class="btn btn-primary" value="Predict">
+                </div>
+            </form>
+
+        </div>
+    </div>
+</body>
+
+</html>
